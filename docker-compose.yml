@@ -1,18 +1,12 @@
 services:
   sample-app:
     build:
-      context: .
+      context: ./sample-fastapi
     labels:
-      # Router
-      - traefik.http.routers.sample-app.rule=Host(`pi.yummymeatrecipes.com`) && PathPrefix(`/sample-app`)
-      # Redirect /sample-app -> /sample-app/
-      - traefik.http.middlewares.sample-app-redirect.redirectregex.regex=^(.*/sample-app)$
-      - traefik.http.middlewares.sample-app-redirect.redirectregex.replacement=$1/
-      - traefik.http.middlewares.sample-app-redirect.redirectregex.permanent=true
-      # Strip prefix
+      - traefik.enable=true
+      - traefik.http.routers.sample-app.rule=Host(`pi.yummymeatrecipes.com`) && PathPrefix(`/sampleApp`)
       - traefik.http.middlewares.sample-app-strip.stripprefix.prefixes=/sample-app
-      # Chain
-      - traefik.http.routers.sample-app.middlewares=sample-app-redirect,sample-app-strip
+      - traefik.http.routers.sample-app.middlewares=sample-app-strip
       - traefik.http.services.sample-app.loadbalancer.server.port=8000
     networks:
       - web
