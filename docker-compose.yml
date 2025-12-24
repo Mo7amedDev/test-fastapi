@@ -1,14 +1,14 @@
 services:
-  sampleapp:
-    container_name: sample-app
+  test-fast-api:
+    container_name: testFastApi
     build:
       context: .
     labels:
       - traefik.enable=true
-      - traefik.http.routers.sampleapp.rule=Host(`pi.yummymeatrecipes.com`) && PathPrefix(`/sampleapp`)
-      - traefik.http.middlewares.sampleapp-strip.stripprefix.prefixes=/sampleapp
-      - traefik.http.routers.sampleapp.middlewares=sampleapp-strip
-      - traefik.http.services.sampleapp.loadbalancer.server.port=8000
+      - traefik.http.routers.test-fast-api.rule=Host(`pi.yummymeatrecipes.com`) && PathPrefix(`/test-fast-api`)
+      - traefik.http.middlewares.test-fast-api-strip.stripprefix.prefixes=/test-fast-api
+      - traefik.http.routers.test-fast-api.middlewares=test-fast-api-strip
+      - traefik.http.services.test-fast-api.loadbalancer.server.port=8000
     networks:
       - web
     restart: unless-stopped
