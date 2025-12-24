@@ -12,5 +12,5 @@ def root():
     message = os.getenv("APP_MESSAGE", "Hello FastAPI!")
     return {
         "app": "sample-fastapi",
-        "message": message+' this is independent app yessssssss yes ok!'
+        "message": message+' this is independent app yessssssss yes ok!ddddddddddddd'
     }
